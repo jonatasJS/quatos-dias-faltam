@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "fs": "^0.0.1-security",
     "mdb-react-ui-kit": "^3.0.0",
     "moment": "^2.29.2",
     "nanoid": "^3.3.2",
