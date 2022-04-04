@@ -1,8 +1,7 @@
 /* eslint-disable @next/next/no-sync-scripts */
 import type { NextPage } from "next";
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import Head from "next/head";
-import Image from "next/image";
 import moment from "moment";
 
 import { ModalTimeWedding, ModalTimeAffair } from "../components";
@@ -166,7 +165,7 @@ const Home: NextPage = () => {
           <button
             type="button"
             onClick={() => startTimeWedding()}
-            className="btn btn-primary"
+            className={`btn btn-primary ${styles.buttonPrimary}`}
             data-mdb-toggle="modal"
             data-mdb-target="#exampleModal"
           >
@@ -176,7 +175,7 @@ const Home: NextPage = () => {
           <button
             type="button"
             onClick={() => startTimeAffair()}
-            className="btn btn-success"
+            className={`btn btn-success ${styles.buttonSuccess}`}
             data-mdb-toggle="modal"
             data-mdb-target="#exampleModal"
           >
