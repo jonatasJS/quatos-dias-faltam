@@ -15,8 +15,8 @@ const Home: NextPage = () => {
     useState<boolean>(false);
   const [isShowedModalAffair, setIsShowedModalAffair] =
     useState<boolean>(false);
-  const [intervalTimeWedding, setIntervalTimeWedding] = useState<Timer>();
-  const [intervalTimeAffair, setIntervalTimeAffair] = useState<Timer>();
+  const [intervalTimeWedding, setIntervalTimeWedding] = useState<NodeJS.Timer>();
+  const [intervalTimeAffair, setIntervalTimeAffair] = useState<NodeJS.Timer>();
   const [secondsResult, setSecondsResult] = useState<Number>(0);
   const [minutesResult, setMinutesResult] = useState<Number>(0);
   const [hoursResult, setHoursResult] = useState<Number>(0);
