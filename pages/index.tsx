@@ -24,8 +24,8 @@ const Home: NextPage = () => {
     useState<boolean>(false);
   const [isShowedModalAffair, setIsShowedModalAffair] =
     useState<boolean>(false);
-  const [intervalTimeWedding, setIntervalTimeWedding] = useState<NodeJS.Timeout>(setInterval(() => {}, 0))
-  const [intervalTimeAffair, setIntervalTimeAffair] = useState<NodeJS.Timeout>(setInterval(() => {}, 0));
+  const [intervalTimeWedding, setIntervalTimeWedding] = useState<NodeJS.Timer>();
+  const [intervalTimeAffair, setIntervalTimeAffair] = useState<NodeJS.Timer>();
   const [secondsResult, setSecondsResult] = useState<Number>(0);
   const [minutesResult, setMinutesResult] = useState<Number>(0);
   const [hoursResult, setHoursResult] = useState<Number>(0);
@@ -139,9 +139,13 @@ const Home: NextPage = () => {
         isShow={isShowedModalWedding}
         toggle={() => {
           setIsShowedModalWedding(false);
+<<<<<<< HEAD
           clearInterval(intervalTimeWedding); // eslint-ignore-line // eslint-disable-line
 <<<<<<< HEAD
 =======
+=======
+          clearInterval(intervalTimeWedding);
+>>>>>>> parent of befa03d (fix)
           setSecondsResult(0);
           setMinutesResult(0);
           setHoursResult(0);
@@ -163,9 +167,13 @@ const Home: NextPage = () => {
         isShow={isShowedModalAffair}
         toggle={() => {
           setIsShowedModalAffair(false);
+<<<<<<< HEAD
           clearInterval(intervalTimeAffair); // eslint-ignore-line // eslint-disable-line
 <<<<<<< HEAD
 =======
+=======
+          clearInterval(intervalTimeAffair);
+>>>>>>> parent of befa03d (fix)
           setSecondsResult(0);
           setMinutesResult(0);
           setHoursResult(0);
