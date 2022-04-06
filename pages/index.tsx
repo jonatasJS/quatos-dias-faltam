@@ -3,6 +3,11 @@ import type { NextPage } from "next";
 import { useEffect, useRef, useState } from "react";
 import Head from "next/head";
 import moment, { DurationInputArg1 } from "moment";
+import {
+  GiSpeakerOff as SpeakerOffIcon,
+  GiSpeaker as SpeakerIcon,
+} from "react-icons/gi";
+import { BsFillHeartFill as HeartIcon } from "react-icons/bs";
 
 import { ModalTimeWedding, ModalTimeAffair, ButtonModal } from "../components";
 
@@ -15,6 +20,7 @@ const Home: NextPage = () => {
     useState<boolean>(false);
   const [isShowedModalAffair, setIsShowedModalAffair] =
     useState<boolean>(false);
+  const [isMudeAudio, setIsMudeAudio] = useState<boolean>(false);
   const [intervalTimeWedding, setIntervalTimeWedding] =
     useState<NodeJS.Timeout>(setInterval(() => {}, 0));
   const [intervalTimeAffair, setIntervalTimeAffair] = useState<NodeJS.Timeout>(
@@ -32,14 +38,18 @@ const Home: NextPage = () => {
   }
 
   useEffect(() => {
-    setTimeout(() => {
-      async () => {
-        console.log(audio)
-        console.log(audio.current)
-        await audio.current.play();
+    const audioSc: NodeJS.Timer = setInterval(() => {
+      if (audio.current.currentTime !== 0) {
+        setIsMudeAudio(true);
+        return clearInterval(audioSc);
+      } else {
+        setIsMudeAudio(false);
+        console.log(audio);
+        console.log(audio.current);
+        audio.current.play();
         audio.current.volume = 0.3;
       }
-    }, 2000);
+    }, 500);
   }, []);
 
   function startTimeWedding() {
@@ -89,6 +99,11 @@ const Home: NextPage = () => {
     );
   }
 
+  function toggleAudio() {
+    audio.current.muted = !audio.current.muted;
+    setIsMudeAudio(!isMudeAudio);
+  }
+
   return (
     <>
       <Head>
@@ -118,6 +133,25 @@ const Home: NextPage = () => {
           clearInterval(intervalTimeAffair); // eslint-ignore-line // eslint-disable-line
         }}
       />
+
+      <div className={styles.music}>
+        {isMudeAudio ? (
+          <SpeakerIcon
+            className={styles.speakerStyles}
+            width={100}
+            height={100}
+            onClick={toggleAudio}
+          />
+        ) : (
+          <SpeakerOffIcon
+            className={`${styles.speakerStyles} ${styles.speakerOff}`}
+            width={100}
+            height={100}
+            onClick={toggleAudio}
+          />
+        )}
+        <h1> <HeartIcon className={styles.heart} /> AMO VOCÊ!! <HeartIcon className={styles.heart}  /> </h1>
+      </div>
 
       <div className={styles.main}>
         <h5>Escolha uma opção:</h5>
