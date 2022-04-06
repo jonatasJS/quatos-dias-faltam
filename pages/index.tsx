@@ -32,8 +32,10 @@ const Home: NextPage = () => {
   }
 
   useEffect(() => {
-    audio.current.play();
-    audio.current.volume = 0.3;
+    (async () => {
+      await audio.current.play();
+      audio.current.volume = 0.3;
+    })();
   }, []);
 
   function startTimeWedding() {
