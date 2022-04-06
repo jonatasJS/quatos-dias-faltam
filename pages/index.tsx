@@ -34,6 +34,8 @@ const Home: NextPage = () => {
   useEffect(() => {
     setTimeout(() => {
       async () => {
+        console.log(audio)
+        console.log(audio.current)
         await audio.current.play();
         audio.current.volume = 0.3;
       }
