@@ -1,15 +1,23 @@
-import moment, { DurationInputArg1 } from 'moment';
-
 import styles from '../../styles/Modal.module.scss';
 
 interface TypesModalTimeWedding {
-  totalTime: DurationInputArg1;
+  secondsResult: Number;
+  minutesResult: Number;
+  hoursResult: Number;
+  dayResult: Number;
+  monthResult: Number;
+  yearResult: Number;
   isShow: Boolean;
   toggle: () => void;
 }
 
 export default function ModalTimeWedding({
-  totalTime,
+  secondsResult,
+  minutesResult,
+  hoursResult,
+  dayResult,
+  monthResult,
+  yearResult,
   isShow,
   toggle
 }: TypesModalTimeWedding) {
@@ -22,30 +30,12 @@ export default function ModalTimeWedding({
             <button type="button" onClick={toggle} className={`${styles.btnClose}`} data-mdb-dismiss="modal" aria-label="Close">X</button>
           </div>
           <div className={`modal-body ${styles.modalBody}`}>
-            <span className={styles.items}>
-              <p className={styles.item}>SEGUNDOS</p>
-              <p>{parseInt(String(moment.duration(totalTime).asSeconds()))}</p>
-            </span>
-            <span className={styles.items}>
-              <p className={styles.item}>MINUTOS</p>
-              <p>{parseInt(String(moment.duration(totalTime).asMinutes()))}</p>
-            </span>
-            <span className={styles.items}>
-              <p className={styles.item}>HORAS</p>
-              <p>{parseInt(String(moment.duration(totalTime).asHours()))}</p>
-            </span>
-            <span className={styles.items}>
-              <p className={styles.item}>DIAS</p>
-              <p>{parseInt(String(moment.duration(totalTime).asDays()))}</p>
-            </span>
-            <span className={styles.items}>
-              <p className={styles.item}>MESES</p>
-              <p>{parseInt(String(moment.duration(totalTime).asMonths()))}</p>
-            </span>
-            <span className={styles.items}>
-              <p className={styles.item}>MESES</p>
-              <p>{parseInt(String(moment.duration(totalTime).asYears()))}</p>
-            </span>
+            <p className="seconds">{parseInt(String(secondsResult))} segundos</p>
+            <p className="minutes">{parseInt(String(minutesResult))} minutos</p>
+            <p className="hours">{parseInt(String(hoursResult))} horas</p>
+            <p className="days">{parseInt(String(dayResult))} dias</p>
+            <p className="month">{parseInt(String(monthResult))} meses</p>
+            <p className="years">{parseInt(String(yearResult))} anos</p>
           </div>
           <div className={`modal-footer ${styles.modalFooter}`}>
             <button type="button" onClick={toggle} className={`btn btn-secondary ${styles.buttonSecondary}`} data-mdb-dismiss="modal">Close</button>

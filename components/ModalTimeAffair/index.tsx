@@ -1,15 +1,23 @@
-import moment, { DurationInputArg1 } from 'moment';
-
 import styles from '../../styles/Modal.module.scss';
 
 interface TypesModalTimeAffair {
-  totalTime: DurationInputArg1;
+  secondsResult: Number;
+  minutesResult: Number;
+  hoursResult: Number;
+  dayResult: Number;
+  monthResult: Number;
+  yearResult: Number;
   isShow: Boolean;
   toggle: () => void;
 }
 
 export default function ModalTimeAffair({
-  totalTime,
+  secondsResult,
+  minutesResult,
+  hoursResult,
+  dayResult,
+  monthResult,
+  yearResult,
   isShow,
   toggle
 }: TypesModalTimeAffair) {
@@ -24,27 +32,27 @@ export default function ModalTimeAffair({
           <div className={`modal-body ${styles.modalBody}`}>
             <span className={styles.items}>
               <p className={styles.item}>SEGUNDOS</p>
-              <p>{parseInt(String(moment.duration(totalTime).asSeconds()))}</p>
+              <p>{parseInt(String(secondsResult))}</p>
             </span>
             <span className={styles.items}>
               <p className={styles.item}>MINUTOS</p>
-              <p>{parseInt(String(moment.duration(totalTime).asMinutes()))}</p>
+              <p>{parseInt(String(minutesResult))}</p>
             </span>
             <span className={styles.items}>
               <p className={styles.item}>HORAS</p>
-              <p>{parseInt(String(moment.duration(totalTime).asHours()))}</p>
+              <p>{parseInt(String(hoursResult))}</p>
             </span>
             <span className={styles.items}>
               <p className={styles.item}>DIAS</p>
-              <p>{parseInt(String(moment.duration(totalTime).asDays()))}</p>
+              <p>{parseInt(String(dayResult))}</p>
             </span>
             <span className={styles.items}>
               <p className={styles.item}>MESES</p>
-              <p>{parseInt(String(moment.duration(totalTime).asMonths()))}</p>
+              <p>{parseInt(String(monthResult))}</p>
             </span>
             <span className={styles.items}>
               <p className={styles.item}>MESES</p>
-              <p>{parseInt(String(moment.duration(totalTime).asYears()))}</p>
+              <p>{parseInt(String(yearResult))}</p>
             </span>
           </div>
           <div className={`modal-footer ${styles.modalFooter}`}>

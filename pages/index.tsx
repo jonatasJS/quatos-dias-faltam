@@ -1,11 +1,18 @@
 /* eslint-disable @next/next/no-sync-scripts */
+<<<<<<< HEAD
 import type { NextPage, PreviewData } from "next";
 import { useEffect, useRef, useState } from "react";
 import Head from "next/head";
 import moment, { DurationInputArg1 } from "moment";
 import audio from "sound-play";
+=======
+import type { NextPage } from "next";
+import { useState } from "react";
+import Head from "next/head";
+import moment from "moment";
+>>>>>>> parent of 758ccc8 (teste)
 
-import { ModalTimeWedding, ModalTimeAffair, ButtonModal } from "../components";
+import { ModalTimeWedding, ModalTimeAffair } from "../components";
 
 import styles from "../styles/Home.module.scss";
 import "mdb-react-ui-kit/dist/css/mdb.min.css";
@@ -17,12 +24,14 @@ const Home: NextPage = () => {
     useState<boolean>(false);
   const [isShowedModalAffair, setIsShowedModalAffair] =
     useState<boolean>(false);
-  const [intervalTimeWedding, setIntervalTimeWedding] =
-    useState<NodeJS.Timeout>(setInterval(() => {}, 0));
-  const [intervalTimeAffair, setIntervalTimeAffair] = useState<NodeJS.Timeout>(
-    setInterval(() => {}, 0)
-  );
-  const [totalTime, setTotalTime] = useState<DurationInputArg1>(0);
+  const [intervalTimeWedding, setIntervalTimeWedding] = useState<NodeJS.Timeout>(setInterval(() => {}, 0))
+  const [intervalTimeAffair, setIntervalTimeAffair] = useState<NodeJS.Timeout>(setInterval(() => {}, 0));
+  const [secondsResult, setSecondsResult] = useState<Number>(0);
+  const [minutesResult, setMinutesResult] = useState<Number>(0);
+  const [hoursResult, setHoursResult] = useState<Number>(0);
+  const [dayResult, setDayResult] = useState<Number>(0);
+  const [monthResult, setMonthResult] = useState<Number>(0);
+  const [yearResult, setYearResult] = useState<Number>(0);
 
   function format(index: number) {
     if (index < 10) {
@@ -46,12 +55,25 @@ const Home: NextPage = () => {
           minutes = format(date.getMinutes()),
           secondst = format(date.getSeconds()),
           dt = `${day}/${month}/${year} ${hours}:${minutes}:${secondst}`;
+
         const test = await moment(
           "30/11/2024 00:00:00",
           "DD/MM/YYYY HH:mm:ss"
         ).diff(moment(dt, "DD/MM/YYYY HH:mm:ss"));
+        const ss = await moment.duration(test).asSeconds(),
+          mm = await moment.duration(test).asMinutes(),
+          HH = await moment.duration(test).asHours(),
+          DD = await moment.duration(test).asDays(),
+          MM = await moment.duration(test).asMonths(),
+          YY = await moment.duration(test).asYears();
 
-        setTotalTime(test);
+        setSecondsResult(ss);
+        setMinutesResult(mm);
+        setHoursResult(HH);
+        setDayResult(DD);
+        setMonthResult(MM);
+        setYearResult(YY);
+        setIsStarted(true);
       }, 1000)
     );
   }
@@ -74,7 +96,23 @@ const Home: NextPage = () => {
           "30/10/2022 00:00:00",
           "DD/MM/YYYY HH:mm:ss"
         ).diff(moment(dt, "DD/MM/YYYY HH:mm:ss"));
+        const ss = await moment.duration(test).asSeconds(),
+          mm = await moment.duration(test).asMinutes(),
+          HH = await moment.duration(test).asHours(),
+          DD = await moment.duration(test).asDays(),
+          MM = await moment.duration(test).asMonths(),
+          YY = await moment.duration(test).asYears();
 
+<<<<<<< HEAD
+=======
+        setSecondsResult(ss);
+        setMinutesResult(mm);
+        setHoursResult(HH);
+        setDayResult(DD);
+        setMonthResult(MM);
+        setYearResult(YY);
+        setIsStarted(true);
+>>>>>>> parent of 758ccc8 (teste)
       }, 1000)
     );
   }
@@ -92,39 +130,75 @@ const Home: NextPage = () => {
       </Head>
 
       <ModalTimeWedding
-        totalTime={totalTime}
+        secondsResult={secondsResult}
+        minutesResult={minutesResult}
+        hoursResult={hoursResult}
+        dayResult={dayResult}
+        monthResult={monthResult}
+        yearResult={yearResult}
         isShow={isShowedModalWedding}
         toggle={() => {
           setIsShowedModalWedding(false);
           clearInterval(intervalTimeWedding); // eslint-ignore-line // eslint-disable-line
+<<<<<<< HEAD
+=======
+          setSecondsResult(0);
+          setMinutesResult(0);
+          setHoursResult(0);
+          setDayResult(0);
+          setMonthResult(0);
+          setYearResult(0);
+          setIsStarted(false);
+>>>>>>> parent of 758ccc8 (teste)
         }}
       />
 
       <ModalTimeAffair
-        totalTime={totalTime}
+        secondsResult={secondsResult}
+        minutesResult={minutesResult}
+        hoursResult={hoursResult}
+        dayResult={dayResult}
+        monthResult={monthResult}
+        yearResult={yearResult}
         isShow={isShowedModalAffair}
         toggle={() => {
           setIsShowedModalAffair(false);
           clearInterval(intervalTimeAffair); // eslint-ignore-line // eslint-disable-line
+<<<<<<< HEAD
+=======
+          setSecondsResult(0);
+          setMinutesResult(0);
+          setHoursResult(0);
+          setDayResult(0);
+          setMonthResult(0);
+          setYearResult(0);
+          setIsStarted(false);
+>>>>>>> parent of 758ccc8 (teste)
         }}
       />
 
       <div className={styles.main}>
         <h5>Escolha uma opção:</h5>
         <div className={styles.buttons}>
-          <ButtonModal
+          <button
+            type="button"
             onClick={() => startTimeWedding()}
             className={`btn btn-primary ${styles.buttonPrimary}`}
+            data-mdb-toggle="modal"
+            data-mdb-target="#exampleModal"
           >
             Casamento
-          </ButtonModal>
+          </button>
 
-          <ButtonModal
+          <button
+            type="button"
             onClick={() => startTimeAffair()}
             className={`btn btn-success ${styles.buttonSuccess}`}
+            data-mdb-toggle="modal"
+            data-mdb-target="#exampleModal"
           >
             Namoro
-          </ButtonModal>
+          </button>
         </div>
       </div>
 
