@@ -32,10 +32,12 @@ const Home: NextPage = () => {
   }
 
   useEffect(() => {
-    (async () => {
-      await audio.current.play();
-      audio.current.volume = 0.3;
-    })();
+    setTimeout(() => {
+      async () => {
+        await audio.current.play();
+        audio.current.volume = 0.3;
+      }
+    }, 2000);
   }, []);
 
   function startTimeWedding() {
