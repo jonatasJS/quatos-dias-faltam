@@ -134,7 +134,10 @@ const Home: NextPage = () => {
       </div>
 
       <audio
+        style={{ opacity: 0 }}
         ref={audio}
+        autoPlay={true}
+        loop={true}
         src="/media/musics/playlist2.mp3"
       ></audio>
 
