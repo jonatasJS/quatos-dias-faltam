@@ -1,16 +1,13 @@
 /* eslint-disable @next/next/no-sync-scripts */
-import type { NextPage, PreviewData } from "next";
-import { useEffect, useRef, useState } from "react";
+import type { NextPage } from "next";
+import { useState } from "react";
 import Head from "next/head";
 import moment, { DurationInputArg1 } from "moment";
-import audio from "sound-play";
 
 import { ModalTimeWedding, ModalTimeAffair, ButtonModal } from "../components";
 
 import styles from "../styles/Home.module.scss";
 import "mdb-react-ui-kit/dist/css/mdb.min.css";
-import path from "path";
-import { ParsedUrlQuery } from "querystring";
 
 const Home: NextPage = () => {
   const [isShowedModalWedding, setIsShowedModalWedding] =
@@ -144,20 +141,3 @@ const Home: NextPage = () => {
 };
 
 export default Home;
-
-export async function getStaticProps(ctx: {
-  params?: ParsedUrlQuery
-  preview?: boolean
-  previewData?: PreviewData
-}) {
-  async function startAudio() {
-    await audio.play("../assets/music/music64.mp3", 0.3);
-  }
-
-  startAudio();
-
-  return {
-    props: { start: startAudio }
-  }
-  
-}
