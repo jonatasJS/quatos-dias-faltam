@@ -114,6 +114,19 @@ const Home: NextPage = () => {
           href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
           rel="stylesheet"
         />
+        <meta property="og:locale" content="pt_BR"></meta>
+        <meta property="og:url" content="https://time.jonatas.app"></meta>
+        <meta
+          property="og:title"
+          content="Tempo restante"
+        />
+        <meta property="og:site_name" content="Tempo restante"></meta>
+        <meta property="og:image" content="https://time.jonatas.app/media/images/time.jonatas.app.png" />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:width" content="1366" />
+        <meta property="og:image:height" content="767" />
+        <meta name="google" content="nositelinkssearchbox" />
+        <meta name="google" content="nopagereadaloud" />
       </Head>
 
       <ModalTimeWedding
@@ -150,7 +163,11 @@ const Home: NextPage = () => {
             onClick={toggleAudio}
           />
         )}
-        <h1> <HeartIcon className={styles.heart} /> AMO VOCÊ!! <HeartIcon className={styles.heart}  /> </h1>
+        <h1>
+          {" "}
+          <HeartIcon className={styles.heart} /> AMO VOCÊ!!{" "}
+          <HeartIcon className={styles.heart} />{" "}
+        </h1>
       </div>
 
       <div className={styles.main}>
