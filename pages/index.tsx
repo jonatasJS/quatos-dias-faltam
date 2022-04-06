@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-sync-scripts */
 import type { NextPage } from "next";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Head from "next/head";
 import moment, { DurationInputArg1 } from "moment";
 
@@ -10,6 +10,7 @@ import styles from "../styles/Home.module.scss";
 import "mdb-react-ui-kit/dist/css/mdb.min.css";
 
 const Home: NextPage = () => {
+  const audio = useRef<HTMLAudioElement>(null!);
   const [isShowedModalWedding, setIsShowedModalWedding] =
     useState<boolean>(false);
   const [isShowedModalAffair, setIsShowedModalAffair] =
@@ -29,6 +30,11 @@ const Home: NextPage = () => {
       return Number(index);
     }
   }
+
+  useEffect(() => {
+    audio.current.play();
+    audio.current.volume = 0.3;
+  }, []);
 
   function startTimeWedding() {
     setIsShowedModalWedding(true);
@@ -124,6 +130,11 @@ const Home: NextPage = () => {
           </ButtonModal>
         </div>
       </div>
+
+      <audio
+        ref={audio}
+        src="/media/musics/playlist2.mp3"
+      ></audio>
 
       <script
         src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
