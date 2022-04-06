@@ -82,6 +82,7 @@ const Home: NextPage = () => {
           "DD/MM/YYYY HH:mm:ss"
         ).diff(moment(dt, "DD/MM/YYYY HH:mm:ss"));
 
+        setTotalTime(test);
       }, 1000)
     );
   }
