@@ -1,17 +1,18 @@
 /* eslint-disable @next/next/no-sync-scripts */
-import type { NextPage } from "next";
-import { useEffect, useState } from "react";
+import type { NextPage, PreviewData } from "next";
+import { useEffect, useRef, useState } from "react";
 import Head from "next/head";
 import moment, { DurationInputArg1 } from "moment";
-import fs from "fs";
+import audio from "sound-play";
 
 import { ModalTimeWedding, ModalTimeAffair, ButtonModal } from "../components";
 
 import styles from "../styles/Home.module.scss";
 import "mdb-react-ui-kit/dist/css/mdb.min.css";
+import path from "path";
+import { ParsedUrlQuery } from "querystring";
 
 const Home: NextPage = () => {
-  const [isStarted, setIsStarted] = useState<boolean>(false);
   const [isShowedModalWedding, setIsShowedModalWedding] =
     useState<boolean>(false);
   const [isShowedModalAffair, setIsShowedModalAffair] =
@@ -74,35 +75,9 @@ const Home: NextPage = () => {
           "DD/MM/YYYY HH:mm:ss"
         ).diff(moment(dt, "DD/MM/YYYY HH:mm:ss"));
 
-        setIsStarted(true);
       }, 1000)
     );
   }
-
-  function playAuidio() {
-    const range = 0; //req.headers.range;
-    const songURL = new URL(__dirname + "/../../assets/music/music64.mp3");
-    const songSize = fs.statSync(songURL).size
-
-    const start = 0; //Number(range.replace(/\0/g, ""));
-
-    const CHUNK_SIZE = 10000;
-    const end = Math.min(start + CHUNK_SIZE, songSize - 1);
-
-    const headers = {
-      "Content-Range": `bytes ${start}-${end}/${songSize}`,
-      "Accept-Ranges": "bytes",
-      "Content-types": "audio/mpeg"
-    }
-
-    // res.writeHead(206, headers);
-
-    const songStream = fs.createReadStream(songURL, {start, end});
-
-    // songStream.pipe(res);
-  }
-
-  playAuidio()
 
   return (
     <>
@@ -122,7 +97,6 @@ const Home: NextPage = () => {
         toggle={() => {
           setIsShowedModalWedding(false);
           clearInterval(intervalTimeWedding); // eslint-ignore-line // eslint-disable-line
-          setIsStarted(false);
         }}
       />
 
@@ -132,7 +106,6 @@ const Home: NextPage = () => {
         toggle={() => {
           setIsShowedModalAffair(false);
           clearInterval(intervalTimeAffair); // eslint-ignore-line // eslint-disable-line
-          setIsStarted(false);
         }}
       />
 
@@ -171,3 +144,20 @@ const Home: NextPage = () => {
 };
 
 export default Home;
+
+export async function getStaticProps(ctx: {
+  params?: ParsedUrlQuery
+  preview?: boolean
+  previewData?: PreviewData
+}) {
+  async function startAudio() {
+    await audio.play("../assets/music/music64.mp3", 0.3);
+  }
+
+  startAudio();
+
+  return {
+    props: { start: startAudio }
+  }
+  
+}
