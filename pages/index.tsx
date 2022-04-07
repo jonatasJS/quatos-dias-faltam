@@ -40,6 +40,7 @@ const Home: NextPage = () => {
         return clearInterval(audioSc);
       } else {
         setIsMudeAudio(false);
+        console.clear();
         audio.current.play();
         audio.current.volume = 0.3;
       }
@@ -73,7 +74,6 @@ const Home: NextPage = () => {
     );
     setModalActive(modal);
   }
-  
 
   function toggleAudio() {
     audio.current.muted = !audio.current.muted;
@@ -149,8 +149,12 @@ const Home: NextPage = () => {
         ref={audio}
         autoPlay={true}
         loop={true}
-        src="/media/musics/playlist2.mp3"
-      ></audio>
+      >
+        <source
+          src="/media/musics/playlist2.mp3"
+          type="audio/mpeg"
+        />
+      </audio>
 
       <script
         src="https://code.jquery.com/jquery-3.5.1.slim.min.js"

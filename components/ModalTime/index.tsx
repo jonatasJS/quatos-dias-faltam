@@ -9,12 +9,7 @@ interface TypesModalTime {
   toggle: () => void;
 }
 
-export default function ModalTime({
-  totalTime,
-  isShow,
-  modalActive,
-  toggle
-}: TypesModalTime) {
+export default function ModalTime({ totalTime, isShow, modalActive, toggle }: TypesModalTime) {
   return (
     <div className={`modal fade ${isShow==true?'show':''}`} style={{ display: `${isShow==true?'block':'none'}` }} id="exampleModal" tabIndex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div className="modal-dialog  modal-dialog-centered">
