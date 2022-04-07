@@ -9,21 +9,17 @@ import {
 } from "react-icons/gi";
 import { BsFillHeartFill as HeartIcon } from "react-icons/bs";
 
-import { ModalTimeWedding, ModalTimeAffair, ButtonModal } from "../components";
+import { ModalTime, Main } from "../components";
 
 import styles from "../styles/Home.module.scss";
 import "mdb-react-ui-kit/dist/css/mdb.min.css";
 
 const Home: NextPage = () => {
   const audio = useRef<HTMLAudioElement>(null!);
-  const [isShowedModalWedding, setIsShowedModalWedding] =
-    useState<boolean>(false);
-  const [isShowedModalAffair, setIsShowedModalAffair] =
-    useState<boolean>(false);
+  const [isShowedModal, setIsShowedModal] = useState<boolean>(false);
+  const [modalActive, setModalActive] = useState<string>('');
   const [isMudeAudio, setIsMudeAudio] = useState<boolean>(false);
-  const [intervalTimeWedding, setIntervalTimeWedding] =
-    useState<NodeJS.Timeout>(setInterval(() => {}, 0));
-  const [intervalTimeAffair, setIntervalTimeAffair] = useState<NodeJS.Timeout>(
+  const [intervalTime, setIntervalTime] = useState<NodeJS.Timeout>(
     setInterval(() => {}, 0)
   );
   const [totalTime, setTotalTime] = useState<DurationInputArg1>(0);
@@ -44,60 +40,40 @@ const Home: NextPage = () => {
         return clearInterval(audioSc);
       } else {
         setIsMudeAudio(false);
-        console.log(audio);
-        console.log(audio.current);
         audio.current.play();
         audio.current.volume = 0.3;
       }
     }, 500);
   }, []);
 
-  function startTimeWedding() {
-    setIsShowedModalWedding(true);
-    setIntervalTimeWedding(
-      setInterval(async () => {
-        clearInterval(intervalTimeAffair);
-        const date = new Date(),
-          day = format(date.getDate()),
-          month = format(date.getMonth()),
-          year = date.getFullYear(),
-          hours = format(date.getHours()),
-          minutes = format(date.getMinutes()),
-          secondst = format(date.getSeconds()),
-          dt = `${day}/${month}/${year} ${hours}:${minutes}:${secondst}`;
-        const test = await moment(
-          "30/11/2024 00:00:00",
-          "DD/MM/YYYY HH:mm:ss"
-        ).diff(moment(dt, "DD/MM/YYYY HH:mm:ss"));
+  function startTimeModal(timeEnd: string, modal: string) {
+    setIsShowedModal(true);
+    clearInterval(intervalTime);
 
-        setTotalTime(test);
-      }, 1000)
+    async function timer() {
+      clearInterval(intervalTime);
+      const date = new Date(),
+        day = format(date.getDate()),
+        month = format(date.getMonth()),
+        year = date.getFullYear(),
+        hours = format(date.getHours()),
+        minutes = format(date.getMinutes()),
+        secondst = format(date.getSeconds()),
+        dt = `${day}/${month}/${year} ${hours}:${minutes}:${secondst}`;
+      const test = await moment(
+        timeEnd,
+        "DD/MM/YYYY HH:mm:ss"
+      ).diff(moment(dt, "DD/MM/YYYY HH:mm:ss"));
+
+      setTotalTime(test);
+    }
+
+    setIntervalTime(
+      setInterval(timer, 1000)
     );
+    setModalActive(modal);
   }
-
-  function startTimeAffair() {
-    setIsShowedModalAffair(true);
-    setIntervalTimeAffair(
-      setInterval(async () => {
-        clearInterval(intervalTimeWedding);
-        const date = new Date(),
-          day = format(date.getDate()),
-          month = format(date.getMonth()),
-          year = date.getFullYear(),
-          hours = format(date.getHours()),
-          minutes = format(date.getMinutes()),
-          secondst = format(date.getSeconds()),
-          dt = `${day}/${month}/${year} ${hours}:${minutes}:${secondst}`;
-
-        const test = await moment(
-          "30/10/2022 00:00:00",
-          "DD/MM/YYYY HH:mm:ss"
-        ).diff(moment(dt, "DD/MM/YYYY HH:mm:ss"));
-
-        setTotalTime(test);
-      }, 1000)
-    );
-  }
+  
 
   function toggleAudio() {
     audio.current.muted = !audio.current.muted;
@@ -116,12 +92,12 @@ const Home: NextPage = () => {
         />
         <meta property="og:locale" content="pt_BR"></meta>
         <meta property="og:url" content="https://time.jonatas.app"></meta>
-        <meta
-          property="og:title"
-          content="Tempo restante"
-        />
+        <meta property="og:title" content="Tempo restante" />
         <meta property="og:site_name" content="Tempo restante"></meta>
-        <meta property="og:image" content="https://time.jonatas.app/media/images/time.jonatas.app.png" />
+        <meta
+          property="og:image"
+          content="https://time.jonatas.app/media/images/time.jonatas.app.png"
+        />
         <meta property="og:image:type" content="image/png" />
         <meta property="og:image:width" content="1366" />
         <meta property="og:image:height" content="767" />
@@ -129,21 +105,14 @@ const Home: NextPage = () => {
         <meta name="google" content="nopagereadaloud" />
       </Head>
 
-      <ModalTimeWedding
+      <ModalTime
         totalTime={totalTime}
-        isShow={isShowedModalWedding}
+        isShow={isShowedModal}
+        modalActive={modalActive}
         toggle={() => {
-          setIsShowedModalWedding(false);
-          clearInterval(intervalTimeWedding); // eslint-ignore-line // eslint-disable-line
-        }}
-      />
-
-      <ModalTimeAffair
-        totalTime={totalTime}
-        isShow={isShowedModalAffair}
-        toggle={() => {
-          setIsShowedModalAffair(false);
-          clearInterval(intervalTimeAffair); // eslint-ignore-line // eslint-disable-line
+          setIsShowedModal(false);
+          clearInterval(intervalTime);
+          setModalActive('');
         }}
       />
 
@@ -170,24 +139,10 @@ const Home: NextPage = () => {
         </h1>
       </div>
 
-      <div className={styles.main}>
-        <h5>Escolha uma opção:</h5>
-        <div className={styles.buttons}>
-          <ButtonModal
-            onClick={() => startTimeWedding()}
-            className={`btn btn-primary ${styles.buttonPrimary}`}
-          >
-            Casamento
-          </ButtonModal>
-
-          <ButtonModal
-            onClick={() => startTimeAffair()}
-            className={`btn btn-success ${styles.buttonSuccess}`}
-          >
-            Namoro
-          </ButtonModal>
-        </div>
-      </div>
+      <Main
+        startTimeModal={startTimeModal}
+        styles={styles}
+      />
 
       <audio
         style={{ opacity: 0 }}

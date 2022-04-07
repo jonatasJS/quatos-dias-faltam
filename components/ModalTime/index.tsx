@@ -2,23 +2,25 @@ import moment, { DurationInputArg1 } from 'moment';
 
 import styles from '../../styles/Modal.module.scss';
 
-interface TypesModalTimeAffair {
+interface TypesModalTime {
   totalTime: DurationInputArg1;
   isShow: Boolean;
+  modalActive: String;
   toggle: () => void;
 }
 
-export default function ModalTimeAffair({
+export default function ModalTime({
   totalTime,
   isShow,
+  modalActive,
   toggle
-}: TypesModalTimeAffair) {
+}: TypesModalTime) {
   return (
     <div className={`modal fade ${isShow==true?'show':''}`} style={{ display: `${isShow==true?'block':'none'}` }} id="exampleModal" tabIndex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div className="modal-dialog  modal-dialog-centered">
         <div className={`${styles.modalContent} modal-content`}>
           <div className={`${styles.modalHeader} modal-header`}>
-            <h5 className="modal-title" id="exampleModalLabel">Tempo restante para o namoro:</h5>
+            <h5 className="modal-title" id="exampleModalLabel">Tempo restante para o {modalActive == 'Wedding' ? 'casamento' : 'namoro' }:</h5>
             <button type="button" onClick={toggle} className={`${styles.btnClose}`} data-mdb-dismiss="modal" aria-label="Close">X</button>
           </div>
           <div className={`modal-body ${styles.modalBody}`}>

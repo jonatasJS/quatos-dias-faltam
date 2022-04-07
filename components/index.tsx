@@ -1,9 +1,9 @@
-import ModalTimeWedding from './ModalTimeWedding';
-import ModalTimeAffair from './ModalTimeAffair';
+import ModalTime from './ModalTime';
 import ButtonModal from './ButtonModal';
+import Main from './Main';
 
 export {
-  ModalTimeWedding,
-  ModalTimeAffair,
-  ButtonModal
+  ModalTime,
+  ButtonModal,
+  Main
 }
