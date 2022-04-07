@@ -43,7 +43,7 @@ export default function ModalTimeAffair({
               <p>{parseInt(String(moment.duration(totalTime).asMonths()))}</p>
             </span>
             <span className={styles.items}>
-              <p className={styles.item}>MESES</p>
+              <p className={styles.item}>ANOS</p>
               <p>{parseInt(String(moment.duration(totalTime).asYears()))}</p>
             </span>
           </div>
