@@ -2,17 +2,17 @@ export default function Contact() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src="" className="App-logo" alt="logo" />
+        <img src="https://github.com/jonatasjs.png" className="App-logo" alt="Jônatas Souza Soares" style={{ border: '50%', width: '100px', height: '100px' }} />
         <p>
-          Edit <code>src/App.tsx</code> and save to reload.
+          Olá, tudo bem?
         </p>
         <a
           className="App-link"
-          href="https://reactjs.org"
+          href="https://jonatas.app/"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          WebSite
         </a>
       </header>
     </div>
