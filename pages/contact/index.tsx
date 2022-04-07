@@ -2,7 +2,7 @@ export default function Contact() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src="https://github.com/jonatasjs.png" className="App-logo" alt="Jônatas Souza Soares" style={{ border: '50%', width: '100px', height: '100px' }} />
+        <img src="https://github.com/jonatasjs.png" className="App-logo" alt="Jônatas Souza Soares" style={{ borderRadius: '50%', width: '100px', height: '100px' }} />
         <p>
           Olá, tudo bem?
         </p>
