@@ -17,7 +17,7 @@ import "mdb-react-ui-kit/dist/css/mdb.min.css";
 const Home: NextPage = () => {
   const audio = useRef<HTMLAudioElement>(null!);
   const [isShowedModal, setIsShowedModal] = useState<boolean>(false);
-  const [modalActive, setModalActive] = useState<string>('');
+  const [modalActive, setModalActive] = useState<string>("");
   const [isMudeAudio, setIsMudeAudio] = useState<boolean>(false);
   const [intervalTime, setIntervalTime] = useState<NodeJS.Timeout>(
     setInterval(() => {}, 0)
@@ -61,17 +61,14 @@ const Home: NextPage = () => {
         minutes = format(date.getMinutes()),
         secondst = format(date.getSeconds()),
         dt = `${day}/${month}/${year} ${hours}:${minutes}:${secondst}`;
-      const test = await moment(
-        timeEnd,
-        "DD/MM/YYYY HH:mm:ss"
-      ).diff(moment(dt, "DD/MM/YYYY HH:mm:ss"));
+      const test = await moment(timeEnd, "DD/MM/YYYY HH:mm:ss").diff(
+        moment(dt, "DD/MM/YYYY HH:mm:ss")
+      );
 
       setTotalTime(test);
     }
 
-    setIntervalTime(
-      setInterval(timer, 1000)
-    );
+    setIntervalTime(setInterval(timer, 1000));
     setModalActive(modal);
   }
 
@@ -119,57 +116,50 @@ const Home: NextPage = () => {
         </style>
       </Head>
 
-      <ModalTime
-        totalTime={totalTime}
-        isShow={isShowedModal}
-        modalActive={modalActive}
-        toggle={() => {
-          setIsShowedModal(false);
-          clearInterval(intervalTime);
-          setModalActive('');
-        }}
-      />
-
-      <div className={styles.music}>
-        {isMudeAudio ? (
-          <SpeakerIcon
-            className={styles.speakerStyles}
-            width={100}
-            height={100}
-            onClick={toggleAudio}
-          />
-        ) : (
-          <SpeakerOffIcon
-            className={`${styles.speakerStyles} ${styles.speakerOff}`}
-            width={100}
-            height={100}
-            onClick={toggleAudio}
-          />
-        )}
-        <h1>
-          {" "}
-          <HeartIcon className={styles.heart} /> AMO VOCÊ!!{" "}
-          <HeartIcon className={styles.heart} />{" "}
-        </h1>
-      </div>
-
-      <Main
-        id="particles-js"
-        startTimeModal={startTimeModal}
-        styles={styles}
-      />
-
-      <audio
-        style={{ opacity: 0 }}
-        ref={audio}
-        autoPlay={true}
-        loop={true}
-      >
-        <source
-          src="/media/musics/playlist2.mp3"
-          type="audio/mpeg"
+      <body id="particles-js">
+        <ModalTime
+          totalTime={totalTime}
+          isShow={isShowedModal}
+          modalActive={modalActive}
+          toggle={() => {
+            setIsShowedModal(false);
+            clearInterval(intervalTime);
+            setModalActive("");
+          }}
         />
-      </audio>
+
+        <div className={styles.music}>
+          {isMudeAudio ? (
+            <SpeakerIcon
+              className={styles.speakerStyles}
+              width={100}
+              height={100}
+              onClick={toggleAudio}
+            />
+          ) : (
+            <SpeakerOffIcon
+              className={`${styles.speakerStyles} ${styles.speakerOff}`}
+              width={100}
+              height={100}
+              onClick={toggleAudio}
+            />
+          )}
+          <h1>
+            {" "}
+            <HeartIcon className={styles.heart} /> AMO VOCÊ!!{" "}
+            <HeartIcon className={styles.heart} />{" "}
+          </h1>
+        </div>
+
+        <Main
+          startTimeModal={startTimeModal}
+          styles={styles}
+        />
+
+        <audio style={{ opacity: 0 }} ref={audio} autoPlay={true} loop={true}>
+          <source src="/media/musics/playlist2.mp3" type="audio/mpeg" />
+        </audio>
+      </body>
 
       <script
         src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
