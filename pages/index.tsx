@@ -114,6 +114,12 @@ const Home: NextPage = () => {
           }
           `}
         </style>
+        <script
+          src="https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.2.3/particles.min.js"
+          integrity="sha512-jq8sZI0I9Og0nnZ+CfJRnUzNSDKxr/5Bvha5bn7AHzTnRyxUfpUArMzfH++mwE/hb2efOo1gCAgI+1RMzf8F7g=="
+          crossOrigin="anonymous"
+          referrerPolicy="no-referrer"
+        ></script>
       </Head>
 
       <body id="particles-js">
@@ -151,10 +157,7 @@ const Home: NextPage = () => {
           </h1>
         </div>
 
-        <Main
-          startTimeModal={startTimeModal}
-          styles={styles}
-        />
+        <Main startTimeModal={startTimeModal} styles={styles} />
 
         <audio style={{ opacity: 0 }} ref={audio} autoPlay={true} loop={true}>
           <source src="/media/musics/playlist2.mp3" type="audio/mpeg" />
@@ -172,13 +175,6 @@ const Home: NextPage = () => {
         integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
         crossOrigin="anonymous"
       />
-
-      <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.2.3/particles.min.js"
-        integrity="sha512-jq8sZI0I9Og0nnZ+CfJRnUzNSDKxr/5Bvha5bn7AHzTnRyxUfpUArMzfH++mwE/hb2efOo1gCAgI+1RMzf8F7g=="
-        crossOrigin="anonymous"
-        referrerPolicy="no-referrer"
-      ></script>
 
       <script src="/scripts/snow.js"></script>
     </>
