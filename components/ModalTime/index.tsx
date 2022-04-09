@@ -1,4 +1,5 @@
 import moment, { DurationInputArg1 } from 'moment';
+import { GrClose as CloseIcon } from 'react-icons/gr';
 
 import styles from '../../styles/Modal.module.scss';
 
@@ -16,7 +17,9 @@ export default function ModalTime({ totalTime, isShow, modalActive, toggle }: Ty
         <div className={`${styles.modalContent} modal-content`}>
           <div className={`${styles.modalHeader} modal-header`}>
             <h5 className="modal-title" id="exampleModalLabel">Tempo restante para o {modalActive == 'Wedding' ? 'casamento' : 'namoro' }:</h5>
-            <button type="button" onClick={toggle} className={`${styles.btnClose}`} data-mdb-dismiss="modal" aria-label="Close">X</button>
+            <button type="button" onClick={toggle} className={`${styles.btnClose}`} data-mdb-dismiss="modal" aria-label="Close">
+              <CloseIcon className={`${styles.btnCloseIcon}`} />
+            </button>
           </div>
           <div className={`modal-body ${styles.modalBody}`}>
             <span className={styles.items}>
@@ -45,7 +48,12 @@ export default function ModalTime({ totalTime, isShow, modalActive, toggle }: Ty
             </span>
           </div>
           <div className={`modal-footer ${styles.modalFooter}`}>
-            <button type="button" onClick={toggle} className={`btn btn-secondary ${styles.buttonSecondary}`} data-mdb-dismiss="modal">Close</button>
+            <button
+              type="button"
+              onClick={toggle}
+              className={`btn btn-secondary ${styles.buttonSecondary}`}
+              data-mdb-dismiss="modal"
+            >Close</button>
           </div>
         </div>
       </div>

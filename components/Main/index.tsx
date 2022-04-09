@@ -5,11 +5,12 @@ interface TypesMain {
     readonly [key: string]: string;
   };
   startTimeModal: (timeEnd: string, modal: string) => void;
+  id: string;
 }
 
-export default function Main({ styles, startTimeModal}: TypesMain) {
+export default function Main({ styles, startTimeModal, id}: TypesMain) {
   return (
-    <div className={styles.main}>
+    <div id={id} className={styles.main}>
       <h5>Escolha uma opção:</h5>
       <div className={styles.buttons}>
         <ButtonModal
