@@ -55,7 +55,7 @@ const Home: NextPage = () => {
       clearInterval(intervalTime);
       const date = new Date(),
         day = format(date.getDate()),
-        month = format(date.getMonth()),
+        month = format(date.getMonth()+1),
         year = date.getFullYear(),
         hours = format(date.getHours()),
         minutes = format(date.getMinutes()),
