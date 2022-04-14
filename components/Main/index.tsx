@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { ButtonModal } from '../index';
 
 interface TypesMain {
@@ -26,6 +27,11 @@ export default function Main({ styles, startTimeModal }: TypesMain) {
           Namoro
         </ButtonModal>
       </div>
+      <Link
+          href='/v2/[occasion]'
+        >
+          <a className={`btn btn-success ${styles.buttonSuccess}`}>Versão 2.0</a>
+        </Link>
     </div>
   );
 }
